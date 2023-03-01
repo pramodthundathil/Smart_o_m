@@ -1,0 +1,39 @@
+body{
+    color: #8a6d2f;
+    background-color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+h1{ 
+    color: whitesmoke;
+    background-image: linear-gradient(90deg, #fac960, #8a6d2f);
+}
+.headscreen{
+    
+    /* background-image: linear-gradient(90deg, #fac960, #8a6d2f); */
+    font-size: x-large;
+    list-style: none;
+    overflow: hidden;
+}
+.headlist{
+    float:left;
+    padding: 20px;
+    
+}
+.headlist:hover{
+    background-color: #8a6d2f;
+    color: #fac960;
+    font-size: x-large;
+}
+table{
+    width: 100%;
+    border: 1;
+}
+caption{
+    font-size: larger;
+    padding: 10px;
+    color: #8a6d2f;
+}
+th{
+    color: #8a6d2f;
+    background-color: #fac960;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="static/css/main_styles.css">
+    <script>
+        window.location.hash = "no-back-button";
+    
+        // Again because Google Chrome doesn't insert
+        // the first hash into the history
+        window.location.hash = "Again-No-back-button"; 
+    
+        window.onhashchange = function(){
+            window.location.hash = "no-back-button";
+        }
+    </script>
+</head>
+<body>
+    <h1 align= 'center'><br>Operations Management<br><br></h1>
+    <div class= "head">
+    
+        
+        <h2><br><br>Get Started with Login</h2><br><br><br>
+        <form action= 'login' align='center' method="POST">
+            {%csrf_token%}
+            <input type="text" name= 'username' placeholder="Enter UserName"><br><br><br>
+            <input type= 'password' name='password' placeholder="Enter password"><br><br><br>
+            {% for message in messages %}
+            <h3 style="color: red;" >{{message}}</h3>
+            {% endfor %}
+            <input type='submit' name='submit' value= 'login' class="button"> 
+        </form>
+    
+    
+    </div>
+    
+</body>
+</html>

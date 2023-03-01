@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conveyance and compensations</title>
+    <link rel="stylesheet" href="{%static 'css/index_styles.css' %}">
+    <style>
+        .container{
+            width:50%;
+            height: auto;
+            margin: auto;
+            margin-top: 30px;
+            padding: 30px;
+            text-align: center;
+        }
+        .container input,select,textarea{
+            width:80%;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist'>Contacts</li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br>
+    </div>
+    <form method="post">
+        <div class="container">
+            {% for m in messages  %}
+              <h3 style="text-align:center;color:greenyellow">{{m}}</h3>
+            {% endfor %}
+            Add A New Work <br><br><br>
+            {% csrf_token %}
+            {% for f in form  %}
+            {{f.label}}: <br>
+            {{f}} <br><br>
+
+            {% endfor %}
+            <button type="submit">Submit</button>
+
+        </div>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Letter</title>
+    <link rel="stylesheet" href="{%static 'css/form_styles.css' %}">
+</head>
+<body align= 'center' >
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br><br>
+        <p align="left"><a style="color: royalblue; text-decoration: none;" href="{% url 'hradmin' %}">HR Management << </a></p><br><br>
+         <h3>Add News To Publish</h3><br><br>
+         
+         {% for message in messages%}
+            <h2 align= 'center' style="color: rgb(21, 255, 0);">{{message}}</h2>
+         {% endfor %}
+         <div class= "add_emp">
+         <form action= "{% url 'add_message' %}" method="POST">
+            {%csrf_token%}
+            <input type="text" name='textarea' placeholder='Type Your Messeges Here!!!!' style="width: 600px; height: 300px" required><br><br>
+            <input type='submit' name='submit' value= 'Publish to DashBoard' class="button">
+            
+         </form>
+         
+         
+             {% for msg in msgs %}
+             <form action="{% url 'delete_msg' %}" methode='POST'>
+                {%csrf_token%}
+            <table>
+                <td>{{msg.message}}</td>
+                <td>{{msg.time}}</td>
+                <td><button type ="submit" name = 'messag' value= {{ msg.msg_id }}>Delete</button></td>
+            </table>
+            </form>
+            
+            {% endfor %}
+        </form>
+         
+        </div>
+</body>
+</html>

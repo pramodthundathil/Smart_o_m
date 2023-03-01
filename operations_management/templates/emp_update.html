@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Employee</title>
+    <link rel="stylesheet" href="{%static 'css/form_styles.css' %}">
+</head>
+<body align='center'>
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br>
+        <form action="{% url 'update_data' %}" method="POST">
+            {%csrf_token%}
+            {% for emply in employe%}
+            <h3>
+                <p>Employe Name: {{emply.staff_name}}</p>   
+            </h3>
+            {% endfor %}
+            <input type='text' name='etitle', placeholder="Employe title" required><br><br>
+            <label for='dob'>Date of Birth</label>
+            <input type='date' name= 'dob' required><br><br>
+            <label for="doj">Date Of Joining</label>
+            <input type="date" name='doj' required><br><br>
+            <input type='number' name='phone' placeholder="Phone Number"><br><br>
+            <select name="department" id="depid">
+                <option value="Select Department">Select Department</option>
+                <option value="Account">Account</option>
+                <option value="Technical">Technical</option>
+                <option value="HR">HR</option>
+                <option value="Managemant">Managemant</option>
+                <option value="Admin">Admin</option>
+            </select><br><br>
+            <button type="submit" name='submit' value='update'>Update</button>
+        </form>
+</body>
+</html>

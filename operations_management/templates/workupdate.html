@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Employee</title>
+    <link rel="stylesheet" href="{%static 'css/employee.css' %}">
+    <style>
+        .add_emp{
+            width:50%;
+            height: auto;
+            margin: auto;
+            text-align: center;
+
+        }
+        .add_emp input,select,textarea{
+            width:80%;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br>
+        <!-- <p><a style="color: royalblue; text-decoration: none;" href="{% url 'hradmin'%}">HR Management << </a><a style="color: royalblue; text-decoration: none;" href="{% url 'employee'%}">Employee Management</a></p><br><br> -->
+        {% for message in messages %}
+        <h3 align='center' style="color: greenyellow;">{{message}}</h3>
+        {% endfor %}
+        <div class= "add_emp">
+        <form method="POST" action="#">
+            {%csrf_token%}
+            {% for i in work  %}
+            <label for="">Work Id</label><br><br>
+              <input type="text" name="id" value="{{i.id}}" readonly id=""><br><br>
+            <label for="">Workname</label><br><br>
+            <input type="text" name="wname" value="{{i.workname}}" readonly><br><br>
+            <label for="">Discription</label><br><br>
+            <textarea name="work" id="" cols="30" rows="10"></textarea><br><br>
+            <label for="">Work Status</label><br><br>
+            <select name="status" id="">
+                <option value="" selected disabled>---------------</option>
+                <option value="Started">Started</option>
+                <option value="Partialy Completed">Partialy Completed</option>
+                <option value="Taken Over">Taken Over</option>
+                <option value="pending">pending</option>
+            </select>
+            {% endfor %}
+<br><br>
+<button type="submit">Submit</button>
+    
+    </form>
+        </div>
+    </body>
+    </html>

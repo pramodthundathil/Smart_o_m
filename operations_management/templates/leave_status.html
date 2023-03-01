@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Employee</title>
+    <link rel="stylesheet" href="{%static 'css/employee.css' %}">
+</head>
+<body>
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br>
+        <p><a style="color: royalblue; text-decoration: none;" href="{% url 'hradmin'%}">HR Management << </a><a style="color: royalblue; text-decoration: none;" href="{% url 'employee'%}">Employee Management</a></p><br><br>
+        {% for message in messages %}
+        <h3 align='center' style="color: greenyellow;">{{message}}</h3>
+        {% endfor %}
+        <form method="POST">
+            {%csrf_token%}
+    <table style = "width: 100%"; border="1";>
+         <caption>Employe Leave status</caption>
+         <tr>
+            <th>Staff Name</th>
+            <th>Staff Title</th>
+            <th>Employe Number</th>
+            <th>Department</th>
+            <th>Leave Start</th>
+            <th>Leave End</th>
+            <th>Leave Status</th>
+            <th>Update</th>
+        </tr>
+       
+        {% for leave in empolye_leave %}
+        <tr>
+            <td>{{leave.staff_name}}</td>
+            <td>{{leave.employee_title}}</td>
+            <td>{{leave.emp_id}}</td>
+            <td>{{leave.department}}</td>
+            <td>{{leave.leave_start}}</td>
+            <td>{{leave.leave_end}}</td>
+            {% if leave.approve_status == True %}
+            <td style="color: green;">Approved</td>
+            {% else %}
+            <td style="color: red;">Approvel Pending</td>
+            <td><button type='submit' name='em_id' value= {{ leave.emp_id }}>Delete</button></td>
+            {% endif %}
+            
+        </tr>
+        {% endfor %}
+        
+    </table>
+</form>
+</body>
+</html>

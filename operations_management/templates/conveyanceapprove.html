@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Employee</title>
+    <link rel="stylesheet" href="{%static 'css/employee.css' %}">
+</head>
+<body>
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br>
+        <!-- <p><a style="color: royalblue; text-decoration: none;" href="{% url 'hradmin'%}">HR Management << </a><a style="color: royalblue; text-decoration: none;" href="{% url 'employee'%}">Employee Management</a></p><br><br> -->
+        {% for message in messages %}
+        <h3 align='center' style="color: greenyellow;">{{message}}</h3>
+        {% endfor %}
+        <form method="POST">
+            {%csrf_token%}
+    <table style = "width: 100%"; border="1";>
+         <caption>Employe Conveyance status</caption>
+         <tr>
+            <th>Staff Name</th>
+            <th>Amount</th>
+            <th>Reason</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+       
+        {% for item in coveyance %}
+        <tr>
+            <td>{{item.username}}</td>
+            <td>{{item.conveyance_amount}}</td>
+            <td>{{item.Reason}}</td>
+            <td>{{item.date}}</td>
+            {% if item.status == True %}
+            <td style="color: green;">Approved</td>
+            <td><a type='submit' href="{%url 'conveyancechange' item.id %}">Cancel</a></td>
+
+            {% else %}
+            <td style="color: red;">Approvel Pending</td>
+            <td><a type='submit' href="{%url 'conveyancechange' item.id %}">Approve</a></td>
+
+            {% endif %}
+            
+        </tr>
+        {% endfor %}
+        
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conveyance and compensations</title>
+    <link rel="stylesheet" href="{%static 'css/index_styles.css' %}">
+    <style>
+        .add_emp{
+            width:400px;
+            height: auto;
+            margin: auto;
+            text-align: center;
+
+        }
+        .add_emp input{
+            width:80%;
+            padding: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist'>Contacts</li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br>
+    </div>
+
+    {% for message in messages%}
+    <h2 align= 'center' style="color: rgb(21, 255, 0);">{{message}}</h2>
+ {% endfor %}
+ <div class= "add_emp">
+    <form method="post">
+        {% csrf_token %}
+        {% for fields in form  %}
+        {{fields.label}}: <br>
+          {{fields}} <br><br>
+        {% endfor %}
+        
+            <br><br><br>
+            <input type='submit' name='submit' value= 'Apply' class="button">
+    </form>
+ </div>
+    
+</body>
+</html>

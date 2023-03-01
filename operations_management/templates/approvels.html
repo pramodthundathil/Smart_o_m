@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management</title>
+    <link rel="stylesheet" href="{%static 'css/index_styles.css' %}">
+</head>
+<body>
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist'>Contacts</li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br>
+        
+            {% for message in messages %}
+                <h3 style="color: green;" align= 'center'>{{message}}</h3>
+            {% endfor %}
+            
+    <form>
+    <ul>
+        <li><a style="text-decoration: none; color:#333" href= "{% url 'leave_approve' %}">Leave Approvel</a></li>
+        <li><a style="text-decoration: none; color:#333" href= "{% url 'ConveyanceApprove' %}">Conveyance Approvel</a></li>
+    </ul>
+</form>
+
+</body>
+</html>

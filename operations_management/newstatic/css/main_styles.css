@@ -1,0 +1,54 @@
+body{
+    color: #8a6d2f;
+    background-color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+.head{
+    background-image: linear-gradient(90deg, #fac960, #8a6d2f);;
+
+}
+h1{ 
+    color: #fac960;
+    background-image: linear-gradient(90deg, #fac960, #8a6d2f);
+    
+
+}
+h2{
+    text-align: center;
+    margin: 10px;
+}
+form{
+    align-items: center;
+}
+input{
+    font-family: inherit;
+    font-size: medium;
+    border: none;
+    text-align: center;
+    padding: 15px;
+    width: 500px;
+
+}
+
+
+.button{
+    width: 250px;
+    margin: 10px;
+    color: white;
+    font-size: large;
+    font-family: inherit;
+    background-color: #8a6d2f;
+}
+a{
+    margin: 10px;
+    color: inherit;
+    font-style: inherit;
+}
+select{
+
+    width: 440px;
+    color: #8a6d2f;
+    padding: 15px;
+    font-family: inherit;
+    font-size: medium;
+}

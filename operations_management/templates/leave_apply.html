@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Leave</title>
+    <link rel="stylesheet" href="{%static 'css/form_styles.css' %}">
+</head>
+<body align= 'center' >
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br><br>
+        <p align="left"><a style="color: royalblue; text-decoration: none;" href="{% url 'employee_leave' %}">Leave Management << </a></p><br><br>
+         <h3>Add Leave</h3><br><br>
+         
+         {% for message in messages%}
+            <h2 align= 'center' style="color: rgb(21, 255, 0);">{{message}}</h2>
+         {% endfor %}
+         <div class= "add_emp">
+         <form action= "{% url 'Add_leave' %}" method="POST">
+            {%csrf_token%}
+            {% for em in employe %}
+            <label for="e_id">Employee ID </label><br><br><br>
+            <input type="text" name= 'e_id' placeholder="Employe ID" value= {{em.id}}><br><br><br>
+            <label for="fname">Employee Name </label><br><br><br>
+            <input type="text" name= 'fname' placeholder="Employe Name" value= {{em.first_name}}{{em.last_name}} readonly><br><br><br>
+            <label for="etitle">Employee Title</label><br><br><br>
+            <input type="text" name= 'etitle' placeholder="Employe Title" value= {{em.emp_title}} readonly><br><br><br>
+            <label for="leave_s_date">Leave start date</label><br><br>
+            <input type="date" name= "leave_s_date"><br><br><br>
+            <label for="leave_e_date">Leave end date</label><br><br>
+            <input type="date" name= "leave_e_date"><br><br><br>
+            <label for="Department">Department</label><br><br>
+            <select name= "department" value=><br><br><br>
+                <option value="Select Department">Select Department</option>
+                <option value="Account">Account</option>
+                <option value="Technical">Technical</option>
+                <option value="HR">HR</option>
+                <option value="Managemant">Managemant</option>
+                <option value="Admin">Admin</option>
+            </select><br><br><br>
+            <input type='submit' name='submit' value= 'Apply' class="button">
+            {% endfor %}
+         </form>
+        </div>
+</body>
+</html>

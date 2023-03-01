@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{%static 'css/index_styles.css' %}">   
+</head>
+<body>
+    <div class= "home">
+    <h1 align= 'center'><br>Operations Management</h1>
+    <h4 align= 'right'><a  style="text-decoration: none; color:#333; font-size:medium"  href = "{% url 'logout' %}">Logout</a></h4>
+    <!-- {% for message in messages %}
+        <h3 align= 'center'>{{message}}</h3>
+    {% endfor %} -->
+    <ul class="headscreen">
+        <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'homebutton' %}">Home</a></li>
+        <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'dashboard' %}">Dash Board</a></li>
+        <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'contacts' %}">Contacts</a></li>
+        <li class ='headlist' ><a style="text-decoration: none; color:#333; font-size:large" href="{% url 'registration' %}">Register new access HERE!!</a></li>
+    </ul><br><br>
+</div>
+<div class= 'content'>
+    {% for message in messages %}
+        <h3 style="color: red;" align= 'center'>{{message}}</h3>
+    {% endfor %}
+    <ul>
+        <li><a style="text-decoration: none; color:#333" href= "{% url 'hradmin' %}">HR Management</a></li>
+        <li><a style="text-decoration: none; color:#333" href= "{% url 'accountadmin' %}">Accounts Management</a></li>
+        <li><a style="text-decoration: none; color:#333" href= "{% url 'WorkReports' %}">Work Reports</a></li>
+        <li><a style="text-decoration: none; color:#333" href= "{% url 'approvals' %}">Approvals</a></li>
+    </ul>
+
+
+</div>
+
+    
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Administration</title>
+    <link rel="stylesheet" href="{%static 'css/form_styles.css' %}">
+</head>
+<body align= 'center' >
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br><br>
+        <p align="left"><a style="color: royalblue; text-decoration: none;" href="{% url 'hradmin'%}">HR Management << </a><a style="color: royalblue; text-decoration: none;" href="{% url 'employee'%}">Employee Management</a></p><br><br>
+         <h3>Add employee</h3><br><br>
+         
+         {% for message in messages%}
+            <h2 align= 'center' style="color: rgb(21, 255, 0);">{{message}}</h2>
+         {% endfor %}
+         <div class= "add_emp">
+         <form action= "{% url 'Add_employee' %}" method="POST">
+            {%csrf_token%}
+            <input type="text" name= 'sname' placeholder="Employe Name" required><br><br><br>
+            <input type="text" name= 'etitle' placeholder="Employe Title" required><br><br><br>
+            <label for="bob">Date of Birth</label></label><br><br>
+            <input type="date" name= 'dob' placeholder="Birth"><br><br><br>
+            <label for="doj">Joining Date</label></label><br><br>
+            <input type="date" name= 'doj' placeholder="joining"><br><br><br>
+            <input type="number" name= 'phonenumber' placeholder="Phone Number"><br><br><br>
+            <input type="email" name= 'email' placeholder="email"><br><br><br>
+            <label for="department">Department</label><br><br>
+            <select name= "department"><br><br><br>
+                <option value="Select Department">Select Department</option>
+                <option value="Account">Account</option>
+                <option value="Technical">Technical</option>
+                <option value="HR">HR</option>
+                <option value="Managemant">Managemant</option>
+                <option value="Admin">Admin</option>
+            </select><br><br><br>
+            <input type='submit' name='submit' value= 'ADD' class="button">
+         </form>
+        </div>
+</body>
+</html>

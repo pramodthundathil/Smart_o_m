@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Employee</title>
+    <link rel="stylesheet" href="{%static 'css/employee.css' %}">
+</head>
+<body>
+    <div class= "home">
+        <h1 align= 'center'><br>Operations Management<br><br></h1>
+        <ul class="headscreen">
+            <li class ='headlist'><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'homebutton' %}">Home</a></li>
+            <li class ='headlist' ><a style="text-decoration: none; color:#333" style:hover='color: #333' href = "{% url 'logout' %}">Logout</a></li>
+        </ul><br><br>
+        <!-- <p><a style="color: royalblue; text-decoration: none;" href="{% url 'hradmin'%}">HR Management << </a><a style="color: royalblue; text-decoration: none;" href="{% url 'employee'%}">Employee Management</a></p><br><br> -->
+        {% for message in messages %}
+        <h3 align='center' style="color: greenyellow;">{{message}}</h3>
+        {% endfor %}
+        <form method="POST">
+            {%csrf_token%}
+    <table style = "width: 100%"; border="1";>
+         <caption>Work status</caption>
+    
+         <tr>
+            <th>Work Name</th>
+            <th>Status</th>
+            <th>Manager</th>
+            <th>Employee</th>
+            <th>Discription</th>
+            <th>Date</th>
+            <th>completed status</th>
+            <th>Action</th>
+            <th></th>
+
+        </tr>
+       
+        {% for item in work %}
+        <tr>
+            <td>{{item.workname}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.manager}}</td>
+            <td>{{item.employee}}</td>
+            <td>{{item.WorkDiscription}}</td>
+            <td>{{item.date}}</td>
+            {% if item.CompletionStatus == True %}
+            <td style="color: green;">Completed</td>
+
+            {% else %}
+            <td style="color: red;">not Completed</td>
+            <td><a type='submit' href="{%url 'DeleteWork' item.id %}">Delete</a></td>
+            <td><a type='submit' href="{%url 'TakeWork' item.id %}">Take Work</a></td>
+
+            
+
+            {% endif %}
+            
+        </tr>
+        {% endfor %}
+        
+    </table>
+</form>
+</body>
+</html>
