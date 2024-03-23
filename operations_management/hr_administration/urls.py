@@ -21,7 +21,7 @@ urlpatterns = [
 
     path('hr_newsletters',views.hr_newsletters,name= 'hr_newsletters'),
     path('add_message',views.add_message,name='add_message'),
-    path('delete_msg',views.delete_msg,name='delete_msg'),
+    path('delete_msg/<int:pk>',views.delete_msg,name='delete_msg'),
 
     path('dashboard',views.dashboard,name='dashboard')
 

@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import HttpResponse
 from django.contrib import messages
 from login import models,views
+from account_admin.decorators import allowed_users, notallowed_users
+
 
 
 
@@ -118,7 +120,7 @@ def delete_employe(request):
     return redirect('employee')
 
 # Leave apply----------------------------------------------------------------------------------
-
+@notallowed_users(allowed_roles=["Admin","Account"])
 def apply_leave(request):
     name = request.session['user_name']
     password = request.session['password']
@@ -162,10 +164,8 @@ def add_message(request):
     messages.info(request,'message has been sent to dash board')
     return redirect('hradmin')
 
-def delete_msg(request):
-
-    mesg = request.POST['messag']
-    msg_del = models.dashboard.objects.get(msg_id=mesg)
+def delete_msg(request,pk ):
+    msg_del = models.dashboard.objects.get(msg_id=pk)
     msg_del.delete()
 
     messages,info(request,'message deleted')

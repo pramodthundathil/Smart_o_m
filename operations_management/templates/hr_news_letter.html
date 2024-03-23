@@ -31,12 +31,12 @@
          
          
              {% for msg in msgs %}
-             <form action="{% url 'delete_msg' %}" methode='POST'>
+             <form action="" methode='POST'>
                 {%csrf_token%}
             <table>
                 <td>{{msg.message}}</td>
                 <td>{{msg.time}}</td>
-                <td><button type ="submit" name = 'messag' value= {{ msg.msg_id }}>Delete</button></td>
+                <td><a href="{% url 'delete_msg' msg.msg_id %}" >Delete</a></td>
             </table>
             </form>
             
